@@ -38,52 +38,52 @@ public class Lexer {
       switch( peek ) {
       case '&':
          if( readch('&') ) {
-             System.out.println("<relop, AND>");
+             //System.out.println("<relop, AND>");
              return Word.and;
              }
          else{
-             System.out.println("< &, &>");
+             //System.out.println("< &, &>");
              return new Token('&');}
       case '|':
          if( readch('|') ){
-             System.out.println("<relop, OR>");
+             //System.out.println("<relop, OR>");
              return Word.or;
          }
          else {
-             System.out.println("< |, |>");
+             //System.out.println("< |, |>");
              return new Token('|');
          }
       case '=':
          if( readch('=') ){
-             System.out.println("<relop, EQ>");
+             //System.out.println("<relop, EQ>");
              return Word.eq;
          }
          else {
-             System.out.println("< =, =>");
+             //System.out.println("< =, =>");
              return new Token('='); 
          }
       case '!':
          if( readch('=') ){
-             System.out.println("<relop, DIF>");
+             //System.out.println("<relop, DIF>");
              return Word.ne;
          }
          else{
-             System.out.println("< !, !>");
+             //System.out.println("< !, !>");
              return new Token('!');
          }
       case '<':
          if( readch('=') ){
-             System.out.println("<relop, LE>");
+             //System.out.println("<relop, LE>");
              return Word.le;}
         else{ 
-            System.out.println("< <, < >");
+            //System.out.println("< <, < >");
             return new Token('<');}
       case '>':
          if( readch('=') ) {
-             System.out.println("<relop, GE>");
+             //System.out.println("<relop, GE>");
              return Word.ge;}   
          else{ 
-             System.out.println("< >, >>");
+             //System.out.println("< >, >>");
              return new Token('>');}
       }
       if( Character.isDigit(peek) ) {
@@ -107,15 +107,16 @@ public class Lexer {
          } while( Character.isLetterOrDigit(peek) );
          String s = b.toString();
          Word w = (Word)words.get(s);
-         if( w != null )  {System.out.println("<"+w+", "+w+">"); return w;}
+         if( w != null )  {//System.out.println("<"+w+", "+w+">");
+            return w;}
          w = new Word(s, Tag.ID);
          words.put(s, w);
-         System.out.println("< id, "+w+">");
+         //System.out.println("< id, "+w+">");
          return w;
       }
 
       Token tok = new Token(peek); peek = ' ';
-      System.out.println("<"+tok+",   >");
+      //System.out.println("<"+tok+",   >");
       return tok;
    }
 }
